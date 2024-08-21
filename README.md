@@ -8,7 +8,7 @@ There are three ways to run the jupyter notebook:
 ### Using binder
   Open the link for binder: https://mybinder.org/v2/gh/darc-reading/MFC_intro/HEAD
 ### Using Google Colab
-- From [Google Colab](https://colab.research.google.com/github/darc-reading/DA-training-2024/):
+- From [Google Colab](https://colab.research.google.com/github/darc-reading/MFC_intro/):
   - Adding these two lines at the start of the notebook
     ```ipython
        !git clone https://github.com/darc-reading/MFC_intro.git

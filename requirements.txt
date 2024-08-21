@@ -1,0 +1,5 @@
+numpy==2.1.0
+matplotlib==3.9.2
+xarray==2024.7.0
+scipy==1.14.1
+notebook==7.2.1

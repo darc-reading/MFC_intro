@@ -6,9 +6,9 @@ This repository is a practical of ensemble Kalman filter that is derived from DA
 ## Running the Jupyter notebok
 There are three ways to run the jupyter notebook:
 ### Using binder
-  Open the link for binder: https://mybinder.org/v2/gh/darc-reading/MFC_intro/HEAD
+- Open the link for binder: https://mybinder.org/v2/gh/darc-reading/MFC_intro.git/HEAD
 ### Using Google Colab
-- From [Google Colab](https://colab.research.google.com/github/darc-reading/MFC_intro/):
+- Open the link for Google Colab: https://colab.research.google.com/github/darc-reading/MFC_intro/:
   - Adding these two lines at the start of the notebook
     ```ipython
        !git clone https://github.com/darc-reading/MFC_intro.git

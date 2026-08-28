@@ -195,3 +195,14 @@ class Experiment:
         return ('ob freq:'+str(self.period_obs)+', density:'+str(self.obs_grid)+
                  ', err var:'+str(self.var_obs)+', M='+str(self.n_ens)+', loc_radius='+str(self.loc_radius)
                 +', inflation='+str(self.inflation))
+
+    def ob_discription(self):
+        """ Description of the observations.
+
+        Returns
+        -------
+        String with description of the observations.
+
+        """
+        return ('ob freq:'+str(self.period_obs)+', density:'+str(self.obs_grid)+
+                 ', err var:'+str(self.var_obs)+', footprint='+str(self.footprint))

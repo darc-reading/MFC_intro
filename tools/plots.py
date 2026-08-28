@@ -141,7 +141,7 @@ def plotL96obs(tobs, y, ny, title):
     mycmap = plt.get_cmap("BrBG", 21)
     y_trans = np.transpose(y)
     fig = plt.figure()
-    fig.suptitle(title)
+    #fig.suptitle(title)
     ax = fig.add_subplot(111)
     if ny > 1:
         C = ax.contourf(np.arange(ny), tobs, y_trans, cmap=mycmap, levels=levs)
@@ -213,6 +213,8 @@ def plotDA_kf(t,xt,tobs,H,y,Xb,xb,Xa,xa,exp_title):
     It might be better to plot in obs. space instead of 
     model space (todo?) !!!
 
+    modifed to just plot analysis ensemble so easier to visualise
+
     Parameters
     ----------
     t : ndarray
@@ -239,39 +241,24 @@ def plotDA_kf(t,xt,tobs,H,y,Xb,xb,Xa,xa,exp_title):
     assert np.sum(H) == len(H), \
         'Make sure H only has 0 and 1 entries for direct grid points observations'
     nx, _ = xt.shape
-    fig = plt.figure()
+    fig = plt.figure(figsize=(10, 12))
     fig.suptitle('Ensemble:'+exp_title)
     for i in range(nx):
-        ax = fig.add_subplot(int(np.ceil(nx/4)), 4, i+1)
-        ax.plot(t, xt[i], 'k')
-        ax.plot(t, Xb[i].T, '--b')
-        ax.plot(t, Xa[i].T, '--m')
+        ax = fig.add_subplot(int(np.ceil(nx/2)), 2, i+1)
+        ''' plot Xa ensemble as thin grey lines and mean as thick blue line'''
+        ax.plot(t, Xa[i].T, c='grey', linewidth=0.5)
+        line1, = ax.plot(t, xt[i], 'k',label='truth')
         if np.sum(H[:, i]) > 0:
             # prevent scatter() from rescaling axes
             # plt.autoscale(False)
-            ax.scatter(tobs, y[H[:, i] > 0.], 20, 'r')
-        ax.set_ylabel('x['+str(i)+']')
-        ax.set_xlabel('time')
-        ax.grid(True)
-
-    fig.subplots_adjust(wspace=0.7,hspace=0.3, bottom=0.18)
-
-    fig = plt.figure()
-    fig.suptitle(exp_title)
-    for i in range(int(nx)):
-        ax = fig.add_subplot(int(np.ceil(nx/4.0)),4,i+1)
-        ax.plot(t,xt[i],'k',label='truth')
-        if np.sum(H[:, i]) > 0:
-            # prevent scatter() from rescaling axes
-            # plt.autoscale(False)
-            sc = ax.scatter(tobs,y[H[:, i] > 0.], 20, 'r', label='obs')
-        line1, = ax.plot(t,xb[i],'b',label='background')
+            sc =ax.scatter(tobs, y[H[:, i] > 0.], 20, 'r', label='obs')      
         line2, = ax.plot(t,xa[i],'m',label='analysis')
         ax.set_ylabel('x['+str(i)+']')
         ax.set_xlabel('time')
         ax.grid(True)
     fig.legend(handles=[line1, line2, sc], loc='lower center', ncols=3)
-    fig.subplots_adjust(wspace=0.7,hspace=0.3, bottom=0.18)
+
+    fig.subplots_adjust(wspace=0.2,hspace=0.1, bottom=0.08)
 
 
 def plotRH(ne,rank):
